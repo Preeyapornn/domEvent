@@ -35,7 +35,10 @@ function todoUserInterface() {
     const notDoneP = document.getElementById('notDone')
     notDoneP.textContent = `Number of Not Done:${numberOfNotDone}`
   }
-  function removeTodoItem(removeId) {}
+  function removeTodoItem(removeId) {
+    let divRemove = document.getElementById(removeId)
+    divRemove.remove()
+  }
   return { showTodoItem, showNumberOfDone, showNumberOfNotDone, removeTodoItem }
 }
 // export { todoUserInterface }
