@@ -30,12 +30,6 @@ const {
   loadTodos
 } = todoManagement()
 
-//ให้สร้างฟังก์ชัน addTodoHandler()เพื่อจัดการเมื่อผู้ใช้กดปุ่ม add  
-//ให้ตรวจสอบว่าไม่เป็นค่า empty string จึงเพิ่มรายการ todoนั้นที่ todosarray 
-//และให้แสดง todoภายใต้ <div id="listTodo"></div>  ของเอกสาร HTML 
-//จากนั้นค้นหาปุ่ม Not Done และ   Remove ของ todoที่ add  เพื่อลงทะเบียน event 
-//handler function notDoneButtonHandler() และremoveButtonHandler()ให้กับปุ่ม 
-//Not Done และ   Remove
 const addTodoHandler = () => {
 
   let inputField = document.getElementsByTagName('input')[0]
@@ -58,7 +52,12 @@ const notDoneButtonHandler = ( event) => {
   updateStatus()
 }
 
-const removeButtonHandler = () => {}
+const removeButtonHandler = ( event) => {
+  let button = event.target
+  removeTodoItem(button.parentNode.id) //deledt node
+  removeTodo(parseInt(button.parentNode.id)) //delete array
+  updateStatus()
+}
 
 const updateStatus = () => {
   showNumberOfDone(getNumberOfDone())
