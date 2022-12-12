@@ -31,38 +31,44 @@ const {
 } = todoManagement()
 
 const addTodoHandler = () => {
+let input = document.getElementsByTagName('input')[0]
+if( input.value.trim()){
+  let id = addTodo( input.value)
+  showTodoItem( id, input.value)
 
-  let inputField = document.getElementsByTagName('input')[0]
-  if(inputField.value.trim()) {
-    let id = addTodo(inputField.value)
-    showTodoItem(id, inputField.value)
-    let setDoneButton = document.getElementById(id).children[1]
-    setDoneButton.addEventListener('click', notDoneButtonHandler)
-    let removeButton = document.getElementById(id).children[2]
-    removeButton.addEventListener('click', removeButtonHandler)
-    updateStatus()
-  }
+  let setDoneButton = document.getElementById(id).children[1]
+  setDoneButton.addEventListener('click', notDoneButtonHandler)
+
+  let removeButton = document.getElementById(id).children[2]
+  removeButton.addEventListener('click', removeButtonHandler)
+
+  updateStatus()
 }
 
-const notDoneButtonHandler = ( event) => {
-  let button = event.target
-  button.textContent = 'Done'
-  button.setAttribute('style', 'background-color: green; color: white;')
-  setItemToDone(parseInt(button.parentNode.id))
-  updateStatus()
+}
+
+const notDoneButtonHandler = ( event ) => {
+ let button = event.target
+ button.textContent = 'Done'
+ button.setAttribute('style','background - color: green; color: white' )
+ setItemToDone( parseInt( button.parentNode.id))
+ updateStatus()
 }
 
 const removeButtonHandler = ( event) => {
   let button = event.target
-  removeTodoItem(button.parentNode.id) //deledt node
-  removeTodo(parseInt(button.parentNode.id)) //delete array
+  removeTodoItem( button.parentNode.id)
+  removeTodo(parseInt( button.parentNode.id))
   updateStatus()
+ 
 }
 
 const updateStatus = () => {
-  showNumberOfDone(getNumberOfDone())
-  showNumberOfNotDone(getNumberOfNotDone())
+  showNumberOfDone( getNumberOfDone())
+  showNumberOfNotDone( getNumberOfNotDone())
 }
+
+
 
 // export {
 //   addTodoHandler,
